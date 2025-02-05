@@ -38,6 +38,16 @@
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
             margin-bottom: 20px;
         }
+        .timer1 {
+            font-size: 2rem;
+            font-weight: bold;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 20px 40px;
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+        }
 
         .back-btn {
                 margin-top: 30px;
@@ -130,36 +140,57 @@
 </head>
 <body style="background: Url('images/sky1.jpg') no-repeat center center/cover;">
     <h1 id="shine">เราอยู่ด้วยกันมานานแค่ไหน 💞</h1>
+    <div class="timer1" id="timer1">
+        กำลังโหลด...
+    </div>
     <div class="timer" id="timer">
         กำลังโหลด...
     </div>
     <button class="back-btn" onclick="location.href='index.php'"><i class="fa-solid fa-arrow-left"></i> &nbsp; Back</button>
 
     <script>
-        // วันเริ่มคบ
-        const startDate = new Date("2023-08-18T00:00:00");
+    // วันเริ่มคบ
+    const startDate = new Date("2023-08-18T00:00:00");
 
-        function updateTimer() {
-            const now = new Date(); // เวลาปัจจุบัน
-            const diff = now - startDate; // คำนวณความแตกต่าง (ms)
+    function updateTimer() {
+        const now = new Date(); // เวลาปัจจุบัน
+        let diff = now - startDate; // คำนวณความแตกต่าง (ms)
 
-            // แปลง ms เป็น วัน, ชั่วโมง, นาที, วินาที
-            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-            const minutes = Math.floor((diff / (1000 * 60)) % 60);
-            const seconds = Math.floor((diff / 1000) % 60);
+        // แปลง ms เป็น วัน, ชั่วโมง, นาที, วินาที
+        let years = now.getFullYear() - startDate.getFullYear();
+        let months = now.getMonth() - startDate.getMonth();
 
-            // อัปเดตข้อความในหน้าเว็บ
-            document.getElementById("timer").innerHTML = `
-                <p>${days} วัน ${hours} ชั่วโมง ${minutes} นาที ${seconds} วินาที</p>
-            `;
+        if (months < 0) {
+            years -= 1;
+            months += 12;
         }
 
-        // เรียกฟังก์ชัน updateTimer ทุกๆ 1 วินาที
-        setInterval(updateTimer, 1000);
+        let days = now.getDate() - startDate.getDate();
 
-        // เรียกฟังก์ชันทันทีเมื่อโหลดหน้า
-        updateTimer();
-    </script>
+        if (days < 0) {
+            months -= 1;
+            let previousMonth = new Date(now.getFullYear(), now.getMonth(), 0);
+            days += previousMonth.getDate();
+        }
+
+        const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        const minutes = Math.floor((diff / (1000 * 60)) % 60);
+        const seconds = Math.floor((diff / 1000) % 60);
+
+        // อัปเดตข้อความในหน้าเว็บ
+        document.getElementById("timer").innerHTML = 
+            `<p>${days} วัน ${hours} ชั่วโมง ${minutes} นาที ${seconds} วินาที</p>`;
+
+            document.getElementById("timer1").innerHTML = 
+            `<p>${years} ปี ${months} เดือน</p>`;
+    }
+
+    // เรียกฟังก์ชัน updateTimer ทุกๆ 1 วินาที
+    setInterval(updateTimer, 1000);
+
+    // เรียกฟังก์ชันทันทีเมื่อโหลดหน้า
+    updateTimer();
+</script>
+
 </body>
 </html>

@@ -76,13 +76,34 @@
             object-fit: cover;
             /* border-radius: 10px; */
         }
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-color: #0d0d0d;
+        }
+
+        canvas {
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .container {
+            position: relative;
+            z-index: 2;
+        }
     </style>
 
     <!-- fontawesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body style="background: Url('images/sky1.jpg') no-repeat center center/cover;">
+    <canvas id="heartCanvas"></canvas>
     <div class="container">
+         
         <!-- <div class="heart"></div> -->
         <!-- <h1>Happy Valentine's Day!</h1> -->
         <!-- Valentine card -->
@@ -109,7 +130,7 @@
             </tr>
             <tr>
                 <td> <a href="valentinetime.php" class="btn" style="text-decoration: none;">Time</a></td>
-                <td>  <a href="valentine2.php" class="btn1" style="text-decoration: none;"> Question</a></td>
+                <td>  <a href="question.php" class="btn1" style="text-decoration: none;"> Question</a></td>
             </tr>
         </table>
     </div>
@@ -117,3 +138,64 @@
 
 
 </html>
+   <script>
+        const canvas = document.getElementById('heartCanvas');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const hearts = [];
+        const heartCount = 200;
+
+        function createHeartPath(x, y, size) {
+            ctx.moveTo(x, y);
+            ctx.bezierCurveTo(x - size / 2, y - size, x - size, y + size / 3, x, y + size);
+            ctx.bezierCurveTo(x + size, y + size / 3, x + size / 2, y - size, x, y);
+        }
+
+        class Heart {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 3 + 1;
+                this.speedY = Math.random() * 2 - 1;
+                this.speedX = Math.random() * 2 - 1;
+                this.alpha = Math.random() * 0.8 + 0.2;
+            }
+
+            draw() {
+                ctx.beginPath();
+                createHeartPath(this.x, this.y, this.size * 10);
+                ctx.fillStyle = `rgba(255, 102, 153, ${this.alpha})`;
+                ctx.fill();
+                ctx.closePath();
+            }
+
+            update() {
+                this.y += this.speedY;
+                this.x += this.speedX;
+
+                if (this.y > canvas.height || this.y < 0 || this.x > canvas.width || this.x < 0) {
+                    this.x = Math.random() * canvas.width;
+                    this.y = Math.random() * canvas.height;
+                }
+            }
+        }
+        for (let i = 0; i < heartCount; i++) {
+            hearts.push(new Heart());
+        }
+        
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            hearts.forEach(heart => {
+                heart.draw();
+                heart.update();
+            });
+
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+    </script>

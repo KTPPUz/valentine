@@ -53,7 +53,6 @@
       left: 2.5vmin;
       top: 0vmin;
       animation: slide-rev 1s ease-out;
-      
     }
 
     .message {
@@ -101,10 +100,10 @@
       border-left: 24vmin solid transparent;
       border-right: 24vmin solid transparent;
       top: 0;
+      transform: rotateX(0); /* ตั้งค่าเริ่มต้น */
       transform-origin: top;
-      transform: rotateX(0); /* ฝาปิดสนิท */
+      animation: open-rev 4s;
     }
-
 
 
     .container.open .lid {
@@ -113,8 +112,9 @@
     }
 
     .container.open .card {
-       animation: slide 0.4s ease-in-out 0.5s forwards;
-       
+      animation: slide 0.4s ease-in-out;
+      animation-delay: 0.5s;
+      animation-fill-mode: forwards;
     }
 
     .shadow {
@@ -155,11 +155,11 @@
       transform-origin: 100% 100%;
     }
 
-     @keyframes open {
-      from {
+    @keyframes open {
+      0% {
         transform: rotateX(0);
       }
-      to {
+      100% {
         transform: rotateX(180deg);
       }
     }
@@ -250,11 +250,11 @@
         left: -0.5vmin;
       }
 
-      /* .lid {
+      .lid {
         border-top: 20vmin solid #f980a1;
         border-left: 30vmin solid transparent;
         border-right: 30vmin solid transparent;
-      } */
+      }
 
       .btn {
         bottom: 20px;
@@ -303,19 +303,22 @@
         border-top: 25vmin solid #f980a1;
         border-left: 37.5vmin solid transparent;
         border-right: 37.5vmin solid transparent;
-     
       }
 
-       .card {
-        transform: translateY(0); /* การ์ดไม่เลื่อนขึ้น */
-      }
       .btn {
         bottom: 10px;
         right: 10px;
         font-size: 12px;
         padding: 6px 12px;
       }
-     
+
+      .lid {
+        transform: rotateX(0); /* ปิดฝาเริ่มต้น */
+      }
+
+      .card {
+        transform: translateY(0); /* การ์ดไม่เลื่อนขึ้น */
+      }
 
     }
   </style>
