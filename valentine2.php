@@ -25,7 +25,8 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      background: Url('images/sky1.jpg') no-repeat center center/cover;
+      background-color: rgb(251, 210, 255);
+      /* background: Url('images/sky1.jpg') no-repeat center center/cover; */
     }
 
     .container {
@@ -53,7 +54,6 @@
       left: 2.5vmin;
       top: 0vmin;
       animation: slide-rev 1s ease-out;
-      
     }
 
     .message {
@@ -101,10 +101,10 @@
       border-left: 24vmin solid transparent;
       border-right: 24vmin solid transparent;
       top: 0;
+      transform: rotateX(0); /* ตั้งค่าเริ่มต้น */
       transform-origin: top;
-      transform: rotateX(0); /* ฝาปิดสนิท */
+      animation: open-rev 4s;
     }
-
 
 
     .container.open .lid {
@@ -113,8 +113,9 @@
     }
 
     .container.open .card {
-       animation: slide 0.4s ease-in-out 0.5s forwards;
-       
+      animation: slide 0.4s ease-in-out;
+      animation-delay: 0.5s;
+      animation-fill-mode: forwards;
     }
 
     .shadow {
@@ -155,11 +156,13 @@
       transform-origin: 100% 100%;
     }
 
-     @keyframes open {
-      from {
+    
+
+    @keyframes open {
+      0% {
         transform: rotateX(0);
       }
-      to {
+      100% {
         transform: rotateX(180deg);
       }
     }
@@ -191,28 +194,64 @@
         transform: translateY(0);
       }
     }
+/* Container Style */
+.container {
+  position: absolute;
+  margin-top: 250px;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  touch-action: manipulation;
+}
 
-    .btn {
-      position: absolute;
-      bottom: 260px;
-      right: 730px;
-      background-color: rgba(255, 0, 102, 0.3);
-      border: none;
-      color: rgb(255, 255, 255);
-      padding: 10px 20px;
-      text-align: center;
-      text-decoration: none;
-      font-size: 16px;
-      cursor: pointer;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s ease;
-    }
+/* Button Section */
+.button-container {
+  position: absolute;
+  margin-top: 380px; /* ระยะห่างระหว่างปุ่มและการ์ด */
+  display: flex;
+  justify-content: center; /* จัดปุ่มให้อยู่กึ่งกลาง */
+  gap: 1rem; /* ระยะห่างระหว่างปุ่ม */
+}
 
-    /* Hover effect for the button */
-    .btn:hover {
-      transform: scale(1.05);
-    }
+/* Buttons Style */
+.btn, .btn1 {
+  background-color: rgba(255, 0, 102, 0.3);
+  border: none;
+  color: rgb(255, 255, 255);
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.btn:hover, .btn1:hover {
+  transform: scale(1.05);
+}
+
+/* Adjustments for Media Queries */
+@media (max-width: 768px) {
+  .btn, .btn1 {
+    font-size: 14px;
+    padding: 8px 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .btn, .btn1 {
+    font-size: 12px;
+    padding: 6px 12px;
+  }
+}
+
+
+
 
     /* Media Queries for Responsiveness */
     @media (max-width: 768px) {
@@ -250,11 +289,11 @@
         left: -0.5vmin;
       }
 
-      /* .lid {
+      .lid {
         border-top: 20vmin solid #f980a1;
         border-left: 30vmin solid transparent;
         border-right: 30vmin solid transparent;
-      } */
+      }
 
       .btn {
         bottom: 20px;
@@ -303,19 +342,22 @@
         border-top: 25vmin solid #f980a1;
         border-left: 37.5vmin solid transparent;
         border-right: 37.5vmin solid transparent;
-     
       }
 
-       .card {
-        transform: translateY(0); /* การ์ดไม่เลื่อนขึ้น */
-      }
       .btn {
         bottom: 10px;
         right: 10px;
         font-size: 12px;
         padding: 6px 12px;
       }
-     
+
+      .lid {
+        transform: rotateX(0); /* ปิดฝาเริ่มต้น */
+      }
+
+      .card {
+        transform: translateY(0); /* การ์ดไม่เลื่อนขึ้น */
+      }
 
     }
   </style>
@@ -326,31 +368,28 @@
 
 <body>
 <link href='https://fonts.googleapis.com/css?family=Solitreo' rel='stylesheet'>
+ <canvas id="heartCanvas"></canvas>
   <div class="container">
+    <!-- Envelope -->
     <div class="envelope"></div>
+    <!-- Card -->
     <div class="card">
-      <!-- <h1 class="message">Do you know!<br>what’s on Valentine’s Day menu?<br>Me n U :)</h1> -->
       <p style="font-size: 15px;"><strong>ถึง ที่รักของฉัน</strong></p>
       <p style="font-size: 15px;">ขอบคุณที่อยู่เคียงข้างกันเสมอ</p>
       <p style="font-size: 15px;">สำหรับทุกช่วงเวลาที่มีค่า</p>
       <p style="font-size: 15px;">ฉันจะรักเธอวันนี้ และในทุกๆวันต่อจากนี้</p>
       <p style="font-size: 15px;">- YOU <3</p>
-      <!-- <div class="heart"></div> -->
     </div>
 
     <div class="cover"></div>
     <div class="lid"></div>
-    <br>
-    <br>
-    <br>
-    <!-- <div class="shadow"></div> -->
   </div>
-    <button class="btn" onclick="openCard()" style="margin-right: 165px;">Open Card</button>
-
-   <a href="index.php" class="btn">
-  
-    <i class="fa-solid fa-arrow-left"></i> &nbsp; Back
-  </a>
+ <div class="button-container">
+    <button class="btn" onclick="openCard()">Open Card</button>
+    <a href="index.php" class="btn1">
+      <i class="fa-solid fa-arrow-left"></i> &nbsp; Back
+    </a>
+  </div>
 
  <script>
   document.addEventListener("DOMContentLoaded", function () {
@@ -363,6 +402,67 @@
     const container = document.querySelector('.container');
     container.classList.toggle('open');
   }
+
+
+  const canvas = document.getElementById('heartCanvas');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const hearts = [];
+        const heartCount = 20;
+
+        function createHeartPath(x, y, size) {
+            ctx.moveTo(x, y);
+            ctx.bezierCurveTo(x - size / 2, y - size, x - size, y + size / 3, x, y + size);
+            ctx.bezierCurveTo(x + size, y + size / 3, x + size / 2, y - size, x, y);
+        }
+
+        class Heart {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2 + 1;
+                this.speedY = Math.random() * 2 - 1;
+                this.speedX = Math.random() * 2 - 1;
+                this.alpha = Math.random() * 0.8 + 0.2;
+            }
+
+            draw() {
+                ctx.beginPath();
+                createHeartPath(this.x, this.y, this.size * 10);
+                ctx.fillStyle = `rgba(255, 102, 153, ${this.alpha})`;
+                ctx.fill();
+                ctx.closePath();
+            }
+
+            update() {
+                this.y += this.speedY;
+                this.x += this.speedX;
+
+                if (this.y > canvas.height || this.y < 0 || this.x > canvas.width || this.x < 0) {
+                    this.x = Math.random() * canvas.width;
+                    this.y = Math.random() * canvas.height;
+                }
+            }
+        }
+        for (let i = 0; i < heartCount; i++) {
+            hearts.push(new Heart());
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            hearts.forEach(heart => {
+                heart.draw();
+                heart.update();
+            });
+
+            requestAnimationFrame(animate);
+        }
+
+        animate();
 </script>
 
 </body>

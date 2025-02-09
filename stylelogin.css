@@ -1,0 +1,87 @@
+body {
+    margin: 0;
+    padding: 0;
+    /* background-color: #ffeef4; */
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: rgb(251, 210, 255);
+}
+
+.login-container {
+    text-align: center;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 400px;
+}
+
+h2 {
+    font-size: 24px;
+    color: #ff6b81;
+    margin-bottom: 20px;
+}
+
+.login-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.image-container {
+    width: 45%;
+}
+
+.image-container img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.keypad {
+    width: 100%;
+    max-width: 200px;
+    text-align: center;
+    margin: 0 auto;
+}
+
+#password {
+    width: 100%;
+    max-width: 200px;
+    padding: 10px;
+    font-size: 18px;
+    text-align: center;
+    margin-bottom: 10px;
+    border: 2px solid #fba7bd;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.keys {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.keys button {
+    background-color: #fba7bd;
+    border: none;
+    color: white;
+    font-size: 16px;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.keys button:hover {
+    background-color: #ff6b81;
+}
+
+footer {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #aaa;
+}

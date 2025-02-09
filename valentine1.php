@@ -60,9 +60,9 @@
       min-height: 100vh;
       display: grid;
       place-content: center;
-      background: #f8f6f1;
+      background-color: rgb(251, 210, 255);
       overflow: hidden;
-      background: url('images/sky1.jpg') no-repeat center center/cover;
+      /* background: url('images/sky1.jpg') no-repeat center center/cover; */
       /* backdrop-filter: blur(2px); */
     }
 
@@ -87,7 +87,7 @@
     }
 
     #shine1 {
-        font-size: 20px;
+        font-size: 16px;
         font-weight: bold;
         color: rgba(255, 0, 102, 0.5);
         z-index: 10;
@@ -123,7 +123,8 @@
         text-decoration: none;
         display: inline-block;
         font-size: 16px;
-        margin: 4px 2px;
+        /* margin: 4px 2px; */
+        margin-top: -120px;
         cursor: pointer;
         border-radius: 10px;
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -154,7 +155,7 @@
   <div id="hedlinecontainer">
     <div id="shine1">ทุกที่ ที่ฉันไปจะมีเธออยู่ข้างๆเสมอ</div>
   </div>
-  <div align="right">
+  <div align="center">
     <a href="index.php" style="text-decoration: none;" class="btn">
       <i class="fa-solid fa-arrow-left"></i> &nbsp; Back
     </a>

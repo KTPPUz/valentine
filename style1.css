@@ -2,7 +2,8 @@ body {
     margin: 0;
     font-family: Arial, sans-serif;
     /* background: linear-gradient(to bottom, #ec7be7, #fecfef); */
-
+    /* background: url('images/sky.jpg'); */
+    background: #fba7bd;
 
     /* background: red; */
     /* background: linear-gradient(to bottom, #ff9a9e, #fecfef); */
@@ -11,7 +12,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    color: #fff;
+    color: #ffffff;
     font-family: 'Poppins', sans-serif;
 }
 

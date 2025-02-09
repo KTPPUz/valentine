@@ -79,7 +79,7 @@
         body {
             margin: 0;
             overflow: hidden;
-            background-color: #0d0d0d;
+            background-color: rgb(251, 210, 255);
         }
 
         canvas {
@@ -100,7 +100,7 @@
     <!-- fontawesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
-<body style="background: Url('images/sky1.jpg') no-repeat center center/cover;">
+<body >
     <canvas id="heartCanvas"></canvas>
     <div class="container">
          
@@ -126,11 +126,11 @@
         <table style="width: 50%;" border="0" align="center">
             <tr>
                 <td>      <img src="images/time.png" alt="" style="width: 100px;"></td>
-                <td>        <img src="images/love.png" alt="" style="width: 100px;"></td>
+                <td>        <img src="images/about.png" alt="" style="width: 45px;"></td>
             </tr>
             <tr>
                 <td> <a href="valentinetime.php" class="btn" style="text-decoration: none;">Time</a></td>
-                <td>  <a href="question.php" class="btn1" style="text-decoration: none;"> Question</a></td>
+                <td>  <a href="about.php" class="btn1" style="text-decoration: none;"> About</a></td>
             </tr>
         </table>
     </div>
@@ -146,7 +146,7 @@
         canvas.height = window.innerHeight;
 
         const hearts = [];
-        const heartCount = 200;
+        const heartCount = 20;
 
         function createHeartPath(x, y, size) {
             ctx.moveTo(x, y);
@@ -158,7 +158,7 @@
             constructor() {
                 this.x = Math.random() * canvas.width;
                 this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 3 + 1;
+                this.size = Math.random() * 2 + 1;
                 this.speedY = Math.random() * 2 - 1;
                 this.speedX = Math.random() * 2 - 1;
                 this.alpha = Math.random() * 0.8 + 0.2;
@@ -185,7 +185,7 @@
         for (let i = 0; i < heartCount; i++) {
             hearts.push(new Heart());
         }
-        
+
         function animate() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
